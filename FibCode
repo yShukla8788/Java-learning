@@ -1,0 +1,35 @@
+import java.util.HashMap;
+import java.util.Map;
+
+public class FibonacciCalc {
+  static private Map < Integer, Integer > memoizeTable = new HashMap < > ();
+
+  // Fibonacci with Memoization
+  static public int fibMemoize(int n) {
+    if (n == 0) {
+      return 0;
+    }
+    if (n == 1) {
+      return 1;
+    }
+
+    if (memoizeTable.containsKey(n)) {
+      // getting value from the stored result(s)
+      return memoizeTable.get(n);
+    }
+
+    int result = fibMemoize(n - 1) + fibMemoize(n - 2);
+
+    // storing the result in cache
+    memoizeTable.put(n, result);
+
+    return result;
+  }
+
+  public static void main(String[] args) {
+    //FibonacciCalc fibo = new FibonacciCalc();
+
+    System.out.println("Fibonacci value for n = 6 --> " +
+      fibMemoize(6));
+  }
+}
